@@ -1,0 +1,69 @@
+{% extends "base.html" %}
+{% load cart_template_tags %}
+{% load static%}
+{% block content %}
+<h2>Order Summary</h2>
+
+
+<div class="table-responsive">
+        <table class="table">
+          <thead>
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">Item Title</th>
+              <th scope="col">Price</th>
+              <th scope="col">Quantity</th>
+              <th scope="col">Total </th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for order_item in object.items.all %}
+            <tr>
+              <th scope="row">{{forloop.counter}}</th>
+              <td>{{order_item.item.title}}</td>
+              <td>{{order_item.item.price}}</td>
+              <td>
+                <a href="{% url 'remove_single_from_cart' order_item.item.slug %}">-&nbsp;</a>
+                {{order_item.quantity}}
+                <a href="{% url 'add_single_from_cart' order_item.item.slug %}">&nbsp;+</a>
+              </td>
+              <td>{{order_item.get_total_price}}</td>
+
+            </tr>
+            {% empty %}
+            <tr>
+              <td colspan="5">Your Cart is empty</td>
+
+            </tr>
+            <tr>
+              <td colspan="5">
+                <a class="btn btn-primary float-right" href="/">Continue Shopping</a>
+
+              </td>
+
+            </tr>
+            {% endfor %}
+            
+
+          </tbody>
+        </table>
+        
+
+
+
+        
+      </div>
+      {% if object.get_total %}
+      <pre>
+      <h3>Your grand total is $ {{object.get_total}}</h3>
+
+      <strong>Continue Shopping </strong>  <a href="/"><button class="btn btn-primary">Continue Shopping</button></a> 
+      
+      <strong>Proceed to Checkout</strong>  <a href="{% url 'checkout'%}"><button class="btn btn-danger">Checkout</button></a>
+      
+      </pre>
+      {% endif %}
+
+
+      
+{% endblock content %}

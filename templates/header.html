@@ -1,0 +1,146 @@
+{% load cart_template_tags %}
+{% load static%}
+
+<header>
+    <!-- TOP HEADER -->
+    <div id="top-header">
+
+        </div>
+    </div>
+    <!-- /TOP HEADER -->
+
+    <!-- MAIN HEADER -->
+    <div id="header">
+        <!-- container -->
+        <div class="container">
+            <!-- row -->
+            <div class="row">
+                <!-- LOGO -->
+                <div class="col-md-3">
+                    <div class="header-logo">
+                        <a href="/" class="logo">
+                            <img src="{% static './img/logo.png' %}" alt="">
+                        </a>
+                    </div>
+                </div>
+                <!-- /LOGO -->
+
+                <!-- SEARCH BAR -->
+                <div class="col-md-6">
+                    <div class="header-search">
+                        <form action="{% url 'search'%}">
+                            <select class="input-select">
+                          
+                            </select>
+                            <input class="input" name="q" id="search" placeholder="Search here">
+                            <button class="search-btn" type="submit">Search</button>
+                        </form>
+                    </div>
+                </div>
+                <!-- /SEARCH BAR -->
+
+                <!-- ACCOUNT -->
+                <div class="col-md-3 clearfix">
+                    <div class="header-ctn">
+                        <!-- Wishlist -->
+                        <div>
+                            
+                        </div>
+                        <!-- /Wishlist -->
+
+                        <!-- Cart -->
+                        {% if request.user.is_authenticated %}
+                        <div class="dropdown">
+
+                            <a  href="{% url 'order-summary' %}">
+                                <i class="fa fa-shopping-cart"></i>
+                                <span>Your Cart</span>
+                                <div class="qty">{{ request.user|cart_item_count}}</div>
+                            </a>
+
+                       
+
+                        
+                                    
+                         
+                                
+                            <div class="cart-dropdown">
+                                <div class="cart-list">
+                                    <div class="product-widget">
+                                        <div class="product-img">
+                                            <img src="{% static './img/product01.png' %}" alt="">
+                                        </div>
+                                      
+                                        <div class="product-body">
+                                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                            <h4 class="product-price"><span class="qty">1x</span>$980.00</h4>
+                                        </div>
+                                        <button class="delete"><i class="fa fa-close"></i></button>
+                                    </div>
+
+                                    <div class="product-widget">
+                                        <div class="product-img">
+                                            <img src="{% static './img/product02.png' %}" alt="">
+                                        </div>
+                                        <div class="product-body">
+                                            <h3 class="product-name"><a href="#">product name goes here</a></h3>
+                                            <h4 class="product-price"><span class="qty">3x</span>$980.00</h4>
+                                        </div>
+                                        <button class="delete"><i class="fa fa-close"></i></button>
+                                    </div>
+                                </div>
+                                <div class="cart-summary">
+                                    <small>3 Item(s) selected</small>
+                                    <h5>SUBTOTAL: $2940.00</h5>
+                                </div>
+                                <div class="cart-btns">
+                                    <a href="#">View Cart</a>
+                                    <a href="#">Checkout  <i class="fa fa-arrow-circle-right"></i></a>
+                                </div>
+                            </div>
+                        </div>
+                        <div >
+                                <a href="/accounts/logout">
+                                    <span class="glyphicon glyphicon-log-out"></span>logout
+                                </a>
+                        </div>
+                        <!-- /Cart -->
+                        {% else %}
+                        <div>
+                            <a  href="/accounts/login">
+                            <span class="glyphicon glyphicon-log-in"></span>Login
+                            </a>
+                    
+                                
+                     
+                        </div>        
+                        {% endif %}
+
+                        <!-- Menu Toogle -->
+                       
+                        <!-- /Menu Toogle -->
+                    </div>
+                </div>
+                <!-- /ACCOUNT -->
+            </div>
+            <!-- row -->
+        </div>
+        <!-- container -->
+    </div>
+    <!-- /MAIN HEADER -->
+</header>
+<nav id="navigation">
+    <!-- container -->
+    <div class="container">
+        <!-- responsive-nav -->
+        <div id="responsive-nav">
+            <!-- NAV -->
+            <ul class="main-nav nav navbar-nav">
+                
+            </ul>
+            <!-- /NAV -->
+        </div>
+        <!-- /responsive-nav -->
+    </div>
+    <!-- /container -->
+</nav>
